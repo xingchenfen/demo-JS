@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<style type="text/css">
+		*{margin:0; padding:0;}
+		ul{list-style-type:none;}
+		body{ color:#333333; font:12px/1.6em Arial, Helvetica, sans-serif;}
+		#picfocus{width:345px; height:235px; border:1px solid #ccc; margin:5px;}
+		#piclist{position: relative; float:left; width:240px; height:225px; overflow:hidden; margin:5px 0px 0px 9px; display:inline;}
+		#pic{position:absolute;}
+		#pic li{overflow:hidden;width:240px; height:225px;}
+		#pic img{ width:240px; height:225px;}
+		#pictxtbg{position:absolute; bottom:0px; left:0px; background: none repeat scroll 0 0 #000000; opacity:0.5; width:240px; height:35px; filter:alpha(opacity=50);}
+		#pictxt{ position:absolute; bottom:8px; left:8px; color:#fff;}
+		#pictxt .normal{display:none;}
+		#pictxt .current{ display:block;}
+		#pic{ overflow:hidden;}
+		#picbtn{float:right; display:inline; margin:2px 9px 0px 0px;}
+		#picbtn li{ cursor:pointer; height:57px; opacity:0.5; filter:alpha(opacity=50);}
+		#picbtn img{ width:75px; height:45px; margin:7px 0px 0px 11px;}
+		#picbtn .current{ opacity:1; filter:alpha(opacity=100);}
+      </style>
+	</head>
+	<body>
+		<script type="text/javascript">
+		  //加载window.onload
+		   function addEventLoad(func){
+		    var oldonload = window.onload;
+		    if(typeof(window.onload) != 'funciton'){
+		     window.onload = func;
+		    }
+		    else {
+		     window.onload = function(){
+		      oldonload();
+		      func();
+		     }
+		    }
+		   }
+		  //初始化小图片及图片标题样式
+		  function classNormal(picbtn,pictxt){
+		   var picbtns = document.getElementByIdx_x(picbtn).getElementsByTagName_r("li");
+		   var pictxts = document.getElementByIdx_x(pictxt).getElementsByTagName_r("li");
+		   for(var i = 0; i < picbtns.length; i++){
+		    picbtns[i].className = "normal";
+		    pictxts[i].className = "normal";
+		   } 
+		  }
+		  //当前显示的小图片及图片标题样式
+		  function classCurrent(picbtn,pictxt,n){
+		   var picbtns = document.getElementByIdx_x(picbtn).getElementsByTagName_r("li");
+		   var pictxts = document.getElementByIdx_x(pictxt).getElementsByTagName_r("li");
+		   picbtns[n].className = "current";
+		   pictxts[n].className = "current";
+		  }
+		  //移动图片
+		  function movePic(pic,final_x,final_y,interval){
+		   var elem = document.getElementByIdx_x(pic);
+		   var xpos = parseInt(elem.style.left);
+		   var ypos = parseInt(elem.style.top);
+		   if(elem.movement){
+		    clearTimeout(elem.movement);
+		   }
+		   if (!elem.style.left) {
+		       elem.style.left = "0px";
+		   }
+		   if (!elem.style.top) {
+		       elem.style.top = "0px";
+		   }
+		   if (xpos == final_x && ypos == final_y) {
+		       return true;
+		   }
+		  
+		   //直接将目标位置赋值给图片当前位置。也可以采用以下代码产生动画
+		
+		  
+		   //以下代码：按间隔时间、平均移动的距离，缓慢移动图片到目标位置，产生动画效果
+		   var dist;
+		      if(xpos < final_x){
+		    dist = Math.ceil((final_x - xpos)/10);
+		    xpos += dist;
+		   }
+		   if(xpos > final_x){
+		    dist = Math.ceil((xpos - final_x)/10);
+		    xpos -= dist;
+		   }
+		   if(ypos < final_y){
+		    dist = Math.ceil((final_y - ypos)/10);
+		    ypos += dist;
+		   }
+		   if(ypos > final_y){
+		    dist = Math.ceil((ypos - final_y)/10);
+		    ypos -= dist;
+		   }
+		   elem.style.left = xpos + "px";
+		   elem.style.top = ypos + "px";
+		   var repeat = "movePic('" + pic + "'," + final_x + "," + final_y + "," + interval + ")";
+		   elem.movement = setTimeout(repeat,interval);          
+		  }
+		  //当鼠标移动到小图片上时切换图片
+		  function changePic(){
+		   if(!document.getElementById('picfocus')) return false;
+		   document.getElementById('picfocus').onmouseover = function(){autokey = true};
+		   document.getElementById('picfocus').onmouseout = function(){autokey = false};
+		   var picbtns = document.getElementById("picbtn").getElementsByTagName("li");  
+		   var picnums = picbtns.length;
+		   picbtns[0].onmouseover = function(){
+		    movePic('pic',0,0,5);
+		    classNormal('picbtn','pictxt');
+		    classCurrent('picbtn','pictxt',0);   
+		   }
+		   if(picnums >= 2){
+		    picbtns[1].onmouseover = function(){
+		    movePic('pic',0,-225,5);
+		    classNormal('picbtn','pictxt');
+		    classCurrent('picbtn','pictxt',1);   
+		       } 
+		   }
+		   if(picnums >= 3){
+		    picbtns[2].onmouseover = function(){
+		    movePic('pic',0,-450,5);
+		    classNormal('picbtn','pictxt');
+		    classCurrent('picbtn','pictxt',2);   
+		       } 
+		   }
+		   if(picnums >= 4){
+		    picbtns[3].onmouseover = function(){
+		    movePic('pic',0,-675,5);
+		    classNormal('picbtn','pictxt');
+		    classCurrent('picbtn','pictxt',3);   
+		       } 
+		   }
+		  }
+		  //自动切换图片
+		  var autokey = false;
+		  setInterval('autoChange()',5000);
+		  function autoChange(){
+		   if(autokey) return false;
+		   var picbtns = document.getElementById("picbtn").getElementsByTagName("li");
+		   var len = picbtns.length;
+		   for(var i = 0; i < len; i++){
+		   if(picbtns[i].className == "current"){
+		     var currentNum = i;
+		    }
+		   }
+		   if(currentNum == 0 && len >= 1){
+		    movePic('pic',0,-225,5);
+		    classNormal('picbtn','pictxt');
+		    classCurrent('picbtn','pictxt',1); 
+		   }
+		   if(currentNum == 1 && len >= 2){
+		    movePic('pic',0,-450,5);
+		    classNormal('picbtn','pictxt');
+		    classCurrent('picbtn','pictxt',2); 
+		   }
+		   if(currentNum == 2 && len >= 3){
+		    movePic('pic',0,-675,5);
+		    classNormal('picbtn','pictxt');
+		    classCurrent('picbtn','pictxt',3); 
+		   }
+		   if(currentNum == 3 && len >= 4){
+		    movePic('pic',0,0,5);
+		    classNormal('picbtn','pictxt');
+		    classCurrent('picbtn','pictxt',0); 
+		   }
+		  }
+		  addEventLoad(changePic);
+		</script>
+		<div id="picfocus">
+		  <div id="piclist">
+		      <div id="pic" style="left:0px; top:0px;">
+		          <ul>
+		              <li><a href="#" target="_blank"><img border="0" alt="" src="images/2.jpg" /></a></li>
+		              <li><a href="#" target="_blank"><img  border="0" alt="" src="images/3.jpg" /></a></li>
+		              <li><a href="#" target="_blank"><img border="0" alt="" src="images/4.jpg" /></a></li>
+		              <li><a href="#" target="_blank"><img border="0" alt="" src="images/5.jpg" /></a></li>                       
+		           </ul>
+		      </div>
+		      <div id="pictxtbg"></div>
+		      <div id="pictxt">
+		            <ul>
+		              <li class="current">刘金山被拒门外踹保安？助理：是劝架</li>
+		              <li class="normal">《复仇者联盟》《与妻书》《形影不离》映 </li>
+		              <li class="normal">李雪健问鼎百合奖为晚辈蒋梦婕提裙子</li>
+		              <li class="normal">刘亦菲携干爹深夜会友人贴面吻告别</li>
+		           </ul>
+		      </div>
+		  </div>
+		  <div id="picbtn">
+		      <ul>
+		              <li class="current"><img src="images/2.jpg" /></li>
+		              <li class="normal"><img src="images/3.jpg" /></li>                
+		              <li class="normal"><img src="images/4.jpg" /></li>
+		              <li class="normal"><img src="images/5.jpg" /></li>         
+		     </ul>
+		  </div>
+		</div>
+</body>
+</html>

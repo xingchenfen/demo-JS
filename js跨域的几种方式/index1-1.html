@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<title>使用window.name跨域(同一窗口载入)1-1</title>
+	</head>
+	<body>
+		<button onclick="select()">查询</button>
+		<h1>js跨域shi用方法</h1>
+		<script type="text/javascript">
+			alert(window.name);
+			function select(){
+				setTimeout(function(){alert( localStorage.sitename);
+				        localStorage.removeItem("sitename");},3000)
+						
+			}
+		</script>
+	</body>
+</html>

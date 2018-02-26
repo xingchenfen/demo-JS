@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" >
+<title>用鼠标滚轮滚动控制图片的缩小放大并且点击图片显示位置</title>
+<style>
+	img{width: 300px;
+	height:300px;}
+	
+</style>
+<script>
+ var zoom;
+function bbimg(o) { 
+    zoom=parseInt(o.style.zoom, 10)||100;
+    zoom+=event.wheelDelta/12;
+    if (zoom>0) {return o.style.zoom=zoom+'%';}  
+}
+
+         function click1 (eve){
+             
+                var data1 = mouseCoords(eve);
+                var x1 = data1.x;
+                var y1 = data1.y;
+           /*     if(zoom){
+                 if(x1<50*zoom&&y1<50*zoom){
+                	alert("zuoshangjiao")
+                }else{
+                alert("绝对坐标："+x1+","+y1);}
+              } */alert("绝对坐标："+x1+","+y1);
+            }
+
+            //获取鼠标点击区域在Html绝对位置坐标
+          function mouseCoords(event){
+                if(event.pageX || event.pageY){
+                    return {x:event.pageX, y:event.pageY};
+                }
+                return{
+                    x:event.clientX + document.body.scrollLeft - document.body.clientLeft,
+                    y:event.clientY + document.body.scrollTop - document.body.clientTop
+                };
+            }  
+
+</script>
+</head>
+<body>
+
+<div id="aa"><img border="0" src="images/8.jpg" onmousewheel="bbimg(this)" onclick="click1(event)"></div>
+
+</body>
+</html>

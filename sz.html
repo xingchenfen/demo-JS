@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button>按钮</button>
+
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script>
+			$(function() {
+				$("button").click(function() {
+					/*$.getJSON("http://localhost:8080/sztx/equipmentSCL/getItems.do?jsoncallback=?",function(msg){
+						alert(msg.IP)
+					})
+					*/
+					$.ajax({
+						url: "http://localhost:8080/sztx/equipmentSCL/getItems.do",
+						type: "POST", //post请求方式
+						dataType: "jsonp",
+						jsonp: "callback",
+						success: function(data) {
+							console.log("ok");
+							var result = JSON.stringify(data); //将json对象转成json字符串
+							          //   JSON.parse(result);//可以将json字符串转换成json对象 
+							$("#text").val(result);
+						}
+					});
+				});
+
+			})
+
+			
+		</script>
+	</body>
+
+</html>

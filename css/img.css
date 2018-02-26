@@ -1,0 +1,105 @@
+div,
+	body,
+	img,
+	li,
+	ul,
+	a {
+		margin: 0px;
+		padding: 0px
+	}
+	
+	li {
+		list-style: none
+	}
+	
+	a {
+		text-decoration: none
+	}
+	
+	img {
+		border: 0px
+	}
+	
+	.banner {
+		width: 600px;
+		height: 400px;
+		margin: 0px auto;
+		position: relative;
+		overflow: hidden
+	}
+	
+	.banner .pic {
+		width: 3000px;
+		height: 495px
+	}
+	
+	.banner .pic li {
+		width: 600px;
+		height: 400px;
+		float: left
+	}
+	
+	.banner .anniu {
+		width: 600px;
+		height: 42px;
+		position: absolute;
+		left: 0px;
+		top: 355px;
+		background: rgba(0, 0, 0, 0.2);
+	}
+	
+	.banner .anniu li {
+		width: 40px;
+		height: 40px;
+		float: left;
+		margin: 2px;
+		display: inline;
+		cursor: pointer;
+	}
+	
+	.banner .anniu li.on {
+		border: 1px solid red;
+	}
+	
+	.banner .lr {
+		width: 600px;
+		height: 50px;
+		position: absolute;
+		top: 160px;
+		display: none
+	}
+	
+	.banner .lr a {
+		color: white;
+		font-size: 36px;
+	}
+	
+	.banner .lr .pre {
+		width: 40px;
+		height: 80px;
+		float: left;
+		background: none repeat scroll 0px 0px rgba(1, 0, 0, 0.6);
+		text-align: center;
+		line-height: 80px;
+		cursor: pointer
+	}
+	
+	.banner .lr .next {
+		width: 40px;
+		height: 80px;
+		float: right;
+		background: none repeat scroll 0px 0px rgba(1, 0, 0, 0.6);
+		text-align: center;
+		line-height: 80px;
+		cursor: pointer
+	}
+	
+	.anniu img {
+		height: 40px;
+		width: 40px;
+	}
+	
+	.pic img {
+		width: 600px;
+		height: 400px;
+	}

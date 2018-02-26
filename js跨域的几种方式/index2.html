@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>通过window.name跨域取数据2</title
+		
+	</head>
+	<body>
+		<script type="text/javascript">	
+			
+			function onLoad(){
+			   var inp=document.querySelector("input").value;
+				var iframe=document.querySelector("#iframe");
+				var win=iframe.contentWindow;//获取window对象
+				win.postMessage(inp,"*");
+				
+			}
+
+		</script>
+			<input type="text" name="userName" value="" onchange="onLoad()"/>
+		<iframe width="600px" height="400px" id="iframe" src="http://127.0.0.1:8020/JS/js%E8%B7%A8%E5%9F%9F%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/index2-2.html?__hbt=1510724701068"></iframe>
+	</body>
+</html>

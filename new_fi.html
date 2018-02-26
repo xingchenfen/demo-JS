@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="aa">
+			
+			<button type="button" @click="eidt">1213</button>
+			
+		</div>
+	    <script type="text/javascript" src="js/vue.min.js" ></script>
+		<script type="text/javascript" src="js/vue-layer.js" ></script>
+	
+		<script type="text/javascript"> 
+	   var s= new Vue({	
+	    	el:"#aa",
+			methods:{
+			   eidt:function(){
+				                       
+                  /* layer.open({  
+                             type: 1,  
+                             title: "更新",  
+                             area: ["300px", "230px"],  
+                             content: "#updatecontent",  
+                             btn: ["保存"],  
+                             yes: function (index) {  
+  
+                                 alert("点击保存");  
+  
+                             },  
+                             cancel: function () { //点击关闭按钮  
+                             }  
+                         });  */
+                layer.open({
+                	title:"12",
+					  content: {
+					    content: "componentName", //传递的组件对象
+					    parent: this,//当前的vue对象
+					    data:[]//props
+					  },
+					  area:['800px','600px']
+					});
+                   
+			    }
+			}   
+		})		
+		</script>
+	</body>
+</html>

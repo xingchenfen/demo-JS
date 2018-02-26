@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			点击li，获得被点击li的下标jquery
+		</title>
+		<style>
+			.s{color:royalblue;}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li class="content">first</li>
+			<li class="content">two</li>
+			<li class="content">three</li>
+			<li class="content">fore</li>
+			<li class="content">last</li>
+		</ul>
+		
+		<script src="js/jquery-1.10.2.min.js" ></script>
+		<script>
+			$("li").click(function(){
+				alert($(this).index());
+				var  i=$(this).index();
+				//$('.content:eq('+i+')').addClass("s");
+				$(this).addClass("s").siblings().removeClass("s");
+			})
+			
+/*			
+			$('ul').animate({'width':'300px','height':'500px'},{'duration':'3000',
+			                                                        'complete':function(){
+			                                                        	console.log();
+			                                                        },
+			                                                      'queue':true;
+			
+			}).animate({'width':'300px','height':'500px'},{'duration':'3000',
+			                                                        'complete':function(){
+			                                                        	console.log();
+			                                                        },
+			                                                      'queue':true;
+			
+			}).animate({'width':'300px','height':'500px'},{'duration':'3000',
+			                                                        'complete':function(){
+			                                                        	console.log();
+			                                                        },
+			                                                      'queue':false;
+			
+			}).animate({'width':'300px','height':'500px'},{'duration':'3000',
+			                                                        'complete':function(){
+			                                                        	console.log();
+			                                                        },
+			                                                      'queue':false;
+			
+			})*/
+		</script>
+	</body>
+</html>

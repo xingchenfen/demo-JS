@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>table隔行变色</title>
+		
+		
+		<style>
+		     table{
+		     	width:800px;
+		     	border:1px solid #cecece;
+		     }
+		     td{
+		     	text-align: center;
+		     	padding: 5px 0px;
+		     }
+		</style>
+	</head>
+	<body>
+		<button onclick="show(this)">开启隔行变色</button><button onclick="mouseenter(this)">开启移入变色</button>
+		<table cellpadding="0" cellspacing="0" border="1px solid #ceecec">
+			<tr>
+				<td>id</td>
+				<td>name</td>
+				<td>age</td>
+				<td>操作</td>
+			</tr>
+			 <tr>
+				<td>1</td>
+				<td>cx</td>
+				<td>12</td>
+				<td>删除</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>cxx</td>
+				<td>23</td>
+				<td>删除</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>xc</td>
+				<td>32</td>
+				<td>删除</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>cxxx</td>
+				<td>34</td>
+				<td>删除</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>xcc</td>
+				<td>26</td>
+				<td>删除</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>vc</td>
+				<td>31</td>
+				<td>删除</td>
+			</tr>
+		</table>
+		
+		
+		
+		<script>
+			var trs=document.getElementsByTagName("tr");
+			function show(obj){
+				for(var i=0;i<trs.length;i++){
+					if(i%2==0){
+						trs[i].style.backgroundColor="#CECECE";
+					}
+				}
+				obj.innerHTML="关闭隔行变色";
+				obj.setAttribute("onclick","show2(this)");
+			}
+			var show2=function(obj){
+				for(var i=0;i<trs.length;i++){
+						trs[i].style.backgroundColor="#FFFFFF";
+				}
+				obj.innerHTML="开启隔行变色";
+				obj.setAttribute("onclick","show(this)");
+			}
+			
+			
+			
+			var mouseenter=function(obj){
+					obj.innerHTML="关闭隔行变色";
+					obj.setAttribute("onclick","mouseenter2(this)");
+				     for(var i=0;i<trs.length;i++){
+						trs[i].setAttribute("onmouseover","mouseover(this)");
+				}
+			}
+			function mouseenter2(obj){
+				for(var i=0;i<trs.length;i++){
+						trs[i].removeAttribute("onmouseover");
+				}
+				obj.innerHTML="开启隔行变色";
+				obj.setAttribute("onclick","mouseenter(this)");
+			}
+			
+		   function mouseover(obj){
+		   	  
+		   	      for(var i=0;i<trs.length;i++){
+		   	      	   trs[i].style.backgroundColor="white";
+		   	      } 
+		   	      obj.style.backgroundColor="red";
+		   }
+			
+		</script>
+		
+		
+		
+		
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>闭包 +递归</title>
+	</head>
+	<body>
+	
+		<script>
+			//闭包
+		/*	function text(){
+				var a=1;
+				var test2=function(){
+					alert(a);
+				}
+				return test2();
+			}*/
+			
+		//var bb=
+			//text();
+			//bb();
+		</script>
+		<script>
+			//递归
+		/*	function text(){
+				
+			var test=function(){
+				var sum=0;
+				for(var i=1;i<101;i++){
+					sum+=i;
+				}
+				alert(sum);
+			}  
+			return test();
+			}
+			text();*/
+			
+		//递归   算1+到100
+		/*		var sum=0;
+			   var test=function(i){
+				 
+				  if(i<101){
+				     sum+=i;
+				  } else{
+				  	return sum;
+				  }
+		         test(i+1)
+			}
+			test(1);
+			alert(sum)
+		*/
+		</script>
+		<script>
+			var socres=[60,55,37,104,78,95,85];
+		/*	var sum=0;
+			for(var i=0;i<socres.length;i++){
+				sum+=socres[i];
+			}
+			document.body.append("平均分为："+parseInt(sum/socres.length*100)/100);*/
+			//最高分，最低分
+			var max=0;
+			for(var j=0;j<socres.length-1;j++){
+				for(var k=j+1;k<socres.length;k++){//数组中的第一个数和第二个数比较，谁大谁小
+                     if(socres[j]>socres[k]){//大的那个数就变成第一个数，再接着和第三个数比较（也就是第二个）最后把数组按从小到大排序
+                     	max=socres[j];
+                     	socres[j]=socres[k];
+                     	socres[k]=max;
+                     }
+				}
+			}
+			alert(socres);
+			document.body.append("最高分为："+socres[(socres.length-1)]);
+			document.body.append("最低分："+socres[0])
+		</script>
+	</body>
+</html>

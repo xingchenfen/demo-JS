@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>使用window.name跨域(同一窗口载入)1</title>
+		<script type="text/javascript">
+			window.name="陈星199201";//写方法里与外面没有影响
+		function song(){	
+			
+			// setTimeout(function(){
+			 	window.location="http://127.0.0.1:8020/JS/js%E8%B7%A8%E5%9F%9F%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/index1-1.html?__hbt=1510717554801";
+			// },5000)
+			}
+		</script>
+	</head>
+	<body>		
+		<button onclick="song()">确定发送</button>
+	</body>
+</html>

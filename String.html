@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>操作String</title>
+	</head>
+	<body>
+		
+		
+		
+		<script>
+			window.name="cx";//js传值
+			
+			location.href="shuZu.html"
+			
+			var str="chenXing";
+			//document.write(str.split("",5));
+			for(var i=0;i<str.length;i++){
+				document.write(str[i]+"<br />");
+			}
+			///字符串变成驼峰形式
+			var str2="Chen xing is student";
+			var st=str2.split(" ");//先转数组再来一个个操作
+			var st2=new Array();//定义数组放重新弄好的数组
+			for(var i=1;i<st.length;i++){
+				var a= st[i].charAt(0);//找到数组里字符串的第一个字符
+				var b=a.toUpperCase();//将数组里字符串的第一个字符变成变成大写
+			    var shuz=st[i].replace(a,b);//替换成大写字母
+			        st2.push(shuz);//加进数组
+			}
+			//字符第一节小写
+			var b=st[0].charAt(0).toLowerCase();
+			var a= st[0].charAt(0);
+			 var shuz1=st[0].replace(a,b);
+		       st2.unshift(shuz1);//从头部加进去，不然就会在最后
+		        document.write(st2.join("")+"<br>");//数组变成字符串
+		       
+			//字符串变成驼峰形式   
+			//封装成函数
+			function  yuny(str){
+					var st=str.split(" ");//先转数组再来一个个操作
+					var st2=new Array();//定义数组放重新弄好的数组
+					for(var i=1;i<st.length;i++){
+						var a= st[i].charAt(0);//找到数组里字符串的第一个字符
+						var b=a.toUpperCase();//将数组里字符串的第一个字符变成变成大写
+					    var shuz=st[i].replace(a,b);//替换成大写字母
+						st2.push(shuz);//加进数组
+					}
+					//字符第一节小写
+					var b=st[0].charAt(0).toLowerCase();
+					var a= st[0].charAt(0);
+					 var shuz1=st[0].replace(a,b);
+				       st2.unshift(shuz1);//从头部加进去，不然就会在最后
+				       document.write(st2.join(""));//数组变成字符串
+			}
+			yuny("Cx djgj year kfhjk dk");
+			//验证邮箱
+			
+			//var email="m17817095394.163.c@.om";
+			//封装函数   邮箱验证
+			function email(email){
+			    var length=email.length; //字符长度
+			     var lookUp=email.indexOf("@");//@的索引
+			      if(lookUp!=-1&&lookUp!=0&&lookUp!=length-3){
+			          var match=email.match(/@/g).length;
+			          if(match==1){
+			          	    if(email.charAt(lookUp+1)=="."){//找@后面是不是“.”
+			          	    	   var lastNum= email.lastIndexOf(".");//找到最后一次出现的地方
+			          	    	   var zifu=email.substring(lastNum+1);//截取最后一个"."后面的字符串
+			          	    	       if(zifu.length==2||zifu.length==3){//求字符串的长度
+			          	    	       	alert("success");
+			          	    	       }else{alert("邮箱格式不对，'.'后面只有2-3个字符");}
+			          	    }else{alert("邮箱格式不对，‘@’后面必须是'.'");}
+			          }else{alert("邮箱格式不对，只能含有一个‘@’");}
+			      }else{alert("邮箱格式不对，必须含有一个‘@’或位置不对");}
+			          
+			     var shuz=email.split(".");//以.开始切割成为数组
+			     if(shuz.length>1){//如果数组长度为1或小于1则没有“.”或者为空
+			     }else{alert("邮箱格式不对，至少含有一个‘.’");}
+			}    
+			  email("719720526@.qq.com");
+		</script>
+	</body>
+</html>

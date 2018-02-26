@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>拖动</title>
+		<style>
+			
+			
+			#id{
+				background:indianred;
+				border:1px solid deepskyblue;
+				width:150px;
+				height:180px;
+				position:relative;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="id">
+			
+			
+			
+		</div>
+		
+		<script>
+			var id=document.getElementById("id");
+			
+			id.onmousedown=function(event){
+				event=event||window.event;
+			var  x=event.clientX-id.offsetLeft;
+			var y=event.clientY-id.offsetTop;
+				document.onmousemove=function(event){
+					event=event||window.event;
+				id.style.left=event.clientX-x+"px";
+				id.style.top=event.clientY-y+"px";
+				
+		     	}
+				
+			}
+			document.onmouseup=function(){
+			    document.onmousemove=null;
+			 
+			}
+			
+		</script>
+	</body>
+</html>

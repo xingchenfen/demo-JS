@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> 鼠标事件</title>
+		<style>
+			background-color:#D94A38;
+			width:200px;
+			height:100px;
+			padding-top:25px;
+			text-align:center;
+		</style>
+	</head>
+	<body>
+	<!--onmousedown与onmouseup鼠标点击事件-->
+	<!--onmouseover与onmouseout鼠标悬浮事件-->
+<pre>
+属性  	此事件发生在何时...
+onabort	图像的加载被中断。	
+onblur	元素失去焦点。
+onchange	域的内容被改变。
+onclick	当用户点击某个对象时调用的事件句柄。
+ondblclick	当用户双击某个对象时调用的事件句柄。
+onerror	在加载文档或图像时发生错误。
+onfocus	元素获得焦点。
+onkeydown	某个键盘按键被按下。
+onkeypress	某个键盘按键被按下并松开。
+onkeyup     某个键盘按键释放
+</pre>
+<div onmousedown="mDown(this)" onmouseup="mUp(this)" >
+点击这里
+</div>
+
+<script>
+function mDown(obj)
+{
+obj.style.backgroundColor="#1ec5e5";
+obj.innerHTML="松开鼠标"
+}
+
+function mUp(obj)
+{
+obj.style.backgroundColor="#D94A38";
+obj.innerHTML="谢谢你"
+}
+</script>
+
+	</body>
+</html>

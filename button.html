@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>省市三级联动</title>
+		<style>
+			table{
+				width:800px;
+				border:1px solid #CECECE;
+				text-align:right;
+			}
+			td{
+				width:50%;
+			}
+			tr>td:last-child{
+				text-align: left;
+				color:red;
+			}
+			p{
+				margin-left:300px;
+				/*text-align: center;*/
+			}
+			button{
+				margin-left: 20px;
+			}
+			table p{
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="Dom.html" method="get">
+			<table cellpadding="0" cellspacing="0" border="1px solid #cecece">
+				<tbody>
+					<tr>
+						<td>
+	    					<input type="text" name="userName" id="user">
+	    				</td>
+	    				<td><div class="user"></div></td>
+					</tr>
+					
+					<tr>
+						<td>>
+						    <input type="password" name="password"id="pass">
+					    </td>
+	    				<td><div class="pass"></div></td>
+					</tr>
+					
+					<tr>
+						<td>
+						    <input type="text" name="phone" placeholder="请输入密号码" id="phone">
+					    </td>
+	    				<td><div class="phone"></div></td>
+					</tr>
+					
+					<tr>
+						<td>
+						性别：<input type="radio" name="sex" value="男" />男
+						      <input type="radio" name="sex" value="女" />女
+					    </td>
+	    				<td><div class="radio"></div></td>
+					</tr>
+					
+					<tr>
+						<td>
+							<select id="province">
+								<option value="0">--请选择--</option>							
+							</select>
+							<select id="city">
+								<option value="0">--请选择--</option>
+							</select>
+							<select id="town">
+								<option value="0">--请选择--</option>
+							</select>
+					    </td>
+	    				<td><div class="select"></div></td>
+					</tr>
+				</tbody>
+		    </table> 
+		    <p><input id="sub" type="button"value="提交"><button type="reset">重置</button></p>
+		</form>
+	</body>
+	<script src="js/cityJson.js" ></script>
+	<script>
+		//	获得表单控件
+		var pro=document.querySelector("#province");//select的id
+		var city=document.querySelector("#city");
+		var town=document.querySelector("#town");		
+		//select 省区联动
+		//省
+		window.onload=function(){
+			publics(province,pro);
+		}
+		//公用方法
+		function publics(key,val){
+			for(var i=0;i<key.length;i++){
+			     var option=document.createElement("option");
+			     option.setAttribute("value",key[i].id);   
+			     option.innerText=key[i].name;
+			     val.appendChild(option);
+			}
+		}
+		//市
+		pro.onchange=function(){
+		      city.innerHTML="<option value='0'>--请选择--</option>";
+		      town.innerHTML="<option value='0'>--请选择--</option>";
+			for(var i=0;i<province.length;i++){
+		       if(this.value==province[i].id){
+		           var cityArr=province[i].city;
+		           publics(cityArr,city);
+		       }
+		    }
+		}
+		//区
+		city.onchange=function(){
+			town.innerHTML="<option value='0'>--请选择--</option>";
+			for(var i=0;i<area.length;i++){
+		       if(this.value==area[i].pid){//pid找到
+		       	   var areaArr=area[i].pid;
+           	        var option=document.createElement("option");
+           	        option.setAttribute("value",area[i].id);   
+					option.innerText=area[i].name;
+					town.appendChild(option);
+				   
+		       }
+		    }
+		}
+	 
+	   function btnSubmit(e) {
+			  e = e || window.event;
+		
+			 	return false;
+			  if(e&&e.preventDefault){ // 兼容标准浏览器
+			   e.preventDefault();
+			  }else{
+			    e.returnValue = false;
+			  } // 兼容IE6~8
+		};
+		
+		//按钮样式
+		var sub=document.getElementById("sub");
+		sub.onclick=function(){
+			var val=sub.value;
+		 	if(val=="提交"){
+		 		
+		 		  var data=new Date();
+		 		  var s= data.getSeconds();
+		 		  var i=30;
+		 		var time=setInterval(function(){
+		 			sub.setAttribute("disabled","true");
+		 			sub.setAttribute("value",i);
+		 		    i--;
+		 		    console.log(i)
+		 			if(i==0){ 	
+			         window.clearInterval(time);
+			         sub.removeAttribute("disabled");
+		 		sub.setAttribute("value","提交");
+		 		}
+		 		},1000);
+		       
+		 		
+		 	}
+		}
+		 
+	
+		 
+	</script>
+</html>
